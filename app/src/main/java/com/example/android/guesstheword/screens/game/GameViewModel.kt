@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModel
 class GameViewModel: ViewModel() {
 
     companion object {
-        const val DONE = 0L
-        const val ONE_SECOND = 1000L
-        const val COUNTDOWN_TIME = 10000L
+        private const val DONE = 0L
+        private const val ONE_SECOND = 1000L
+        private const val COUNTDOWN_TIME = 10000L
     }
 
     private val timer: CountDownTimer
@@ -36,11 +36,10 @@ class GameViewModel: ViewModel() {
     private lateinit var wordList: MutableList<String>
 
     init {
-        _word.value = ""
-        _score.value= 0
-        Log.i("GameViewModel", "GameViewModel created!")
         resetList()
         nextWord()
+        _score.value= 0
+        Log.i("GameViewModel", "GameViewModel created!")
 
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
