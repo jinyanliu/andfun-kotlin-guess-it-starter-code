@@ -18,6 +18,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="gameViewModel"
+            type="com.example.android.guesstheword.screens.game.GameViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
         android:layout_width="match_parent"
@@ -57,6 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/word_is_text"
             app:layout_constraintVertical_chainStyle="packed"
+            android:text="@{@string/quote_format(gameViewModel.word)}"
             tools:text="&quot;Tuna&quot;" />
 
         <TextView
@@ -88,10 +96,12 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:text="@{@string/score_format(gameViewModel.score)}"
             tools:text="Score: 2" />
 
         <Button
             android:id="@+id/skip_button"
+            android:onClick="@{() -> gameViewModel.onSkip()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -113,6 +123,7 @@
 
         <Button
             android:id="@+id/correct_button"
+            android:onClick="@{() -> gameViewModel.onCorrect()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
